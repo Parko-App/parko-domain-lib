@@ -8,8 +8,8 @@ import java.util.UUID;
 @Getter
 public class BalanceAccount {
 
-    protected UUID userId;
-    protected BigDecimal balance;
+    private UUID userId;
+    private BigDecimal balance;
 
     public BalanceAccount(UUID userId) {
         if (userId == null) {

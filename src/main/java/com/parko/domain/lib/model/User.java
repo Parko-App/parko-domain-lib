@@ -7,12 +7,12 @@ import java.util.UUID;
 @Getter
 public class User {
 
-    protected UUID id;
-    protected String studentId;
-    protected String fullName;
-    protected Email email;
-    protected String passwordHash;
-    protected UserRole role;
+    private UUID id;
+    private String studentId;
+    private String fullName;
+    private Email email;
+    private String passwordHash;
+    private UserRole role;
 
     public User (UUID id, String studentId, String fullName, Email email, String passwordHash){
 

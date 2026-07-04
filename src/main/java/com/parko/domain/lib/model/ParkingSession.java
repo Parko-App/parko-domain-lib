@@ -8,13 +8,13 @@ import java.util.UUID;
 @Getter
 public class ParkingSession {
 
-    protected UUID id;
-    protected UUID vehicleId;
-    protected String plateSnapshot;
-    protected SessionType sessionType;
-    protected SessionStatus status;
-    protected LocalDateTime entryAt;
-    protected LocalDateTime exitAt;
+    private UUID id;
+    private UUID vehicleId;
+    private String plateSnapshot;
+    private SessionType sessionType;
+    private SessionStatus status;
+    private LocalDateTime entryAt;
+    private LocalDateTime exitAt;
 
     private ParkingSession(UUID id, UUID vehicleId, String plateSnapshot, SessionType sessionType, LocalDateTime entryAt) {
         this.id = id;

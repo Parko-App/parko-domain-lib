@@ -8,12 +8,12 @@ import java.util.UUID;
 @Getter
 public class Ticket {
 
-    protected UUID parkingSessionId;
-    protected String ticketNumber;
-    protected String qrData;
-    protected TicketStatus status;
-    protected LocalDateTime issuedAt;
-    protected LocalDateTime paidAt;
+    private UUID parkingSessionId;
+    private String ticketNumber;
+    private String qrData;
+    private TicketStatus status;
+    private LocalDateTime issuedAt;
+    private LocalDateTime paidAt;
 
     public Ticket(UUID parkingSessionId, String ticketNumber, String qrData, LocalDateTime issuedAt) {
         if (parkingSessionId == null) {

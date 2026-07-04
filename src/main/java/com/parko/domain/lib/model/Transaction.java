@@ -9,15 +9,15 @@ import java.util.UUID;
 @Getter
 public class Transaction {
 
-    protected UUID id;
-    protected UUID balanceAccountId;
-    protected UUID parkingSessionId;
-    protected TransactionType type;
-    protected BigDecimal amount;
+    private UUID id;
+    private UUID balanceAccountId;
+    private UUID parkingSessionId;
+    private TransactionType type;
+    private BigDecimal amount;
     @Setter
-    protected TransactionStatus status;
-    protected String paymentProvider;
-    protected String externalRef;
+    private TransactionStatus status;
+    private String paymentProvider;
+    private String externalRef;
 
     private Transaction(UUID id, UUID balanceAccountId, UUID parkingSessionId, TransactionType type,
                          BigDecimal amount, TransactionStatus status, String paymentProvider, String externalRef) {

@@ -8,13 +8,13 @@ import java.util.UUID;
 @Getter
 public class AccessLog {
 
-    protected UUID id;
-    protected UUID parkingSessionId;
-    protected AccessEventType eventType;
-    protected AccessMethod accessMethod;
-    protected AccessResult result;
-    protected String rawPayload;
-    protected LocalDateTime occurredAt;
+    private UUID id;
+    private UUID parkingSessionId;
+    private AccessEventType eventType;
+    private AccessMethod accessMethod;
+    private AccessResult result;
+    private String rawPayload;
+    private LocalDateTime occurredAt;
 
     public AccessLog(UUID id, UUID parkingSessionId, AccessEventType eventType, AccessMethod accessMethod,
                       AccessResult result, String rawPayload, LocalDateTime occurredAt) {
