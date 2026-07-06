@@ -10,12 +10,12 @@ public class Vehicle {
 
     private UUID userId;
     private String plate;
-    private String marca;
-    private String modelo;
+    private String brand;
+    private String model;
     @Setter
     private boolean active;
 
-    public Vehicle(UUID userId, String plate, String marca, String modelo) {
+    public Vehicle(UUID userId, String plate, String brand, String model) {
         if (userId == null) {
             throw new IllegalArgumentException("El userId no puede estar vacío");
         }
@@ -26,15 +26,15 @@ public class Vehicle {
         }
         this.plate = plate;
 
-        if (marca == null) {
+        if (brand == null) {
             throw new IllegalArgumentException("La marca no puede estar vacía");
         }
-        this.marca = marca;
+        this.brand = brand;
 
-        if (modelo == null) {
+        if (model == null) {
             throw new IllegalArgumentException("El modelo no puede estar vacío");
         }
-        this.modelo = modelo;
+        this.model = model;
 
         this.active = true;
     }

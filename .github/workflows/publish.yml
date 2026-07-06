@@ -1,0 +1,32 @@
+name: Publicar paquete (CD)
+
+on:
+  push:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar el código (Checkout)
+        uses: actions/checkout@v4
+
+      - name: Configurar Java 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Dar permisos de ejecución al Maven Wrapper
+        run: chmod +x mvnw
+
+      - name: Compilar, testear y publicar en GitHub Packages
+        run: ./mvnw --settings .github/maven-settings.xml clean deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
