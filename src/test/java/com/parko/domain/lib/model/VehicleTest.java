@@ -17,8 +17,8 @@ class VehicleTest {
 
         assertThat(vehicle.getUserId()).isEqualTo(userId);
         assertThat(vehicle.getPlate()).isEqualTo("AB123CD");
-        assertThat(vehicle.getMarca()).isEqualTo("Toyota");
-        assertThat(vehicle.getModelo()).isEqualTo("Corolla");
+        assertThat(vehicle.getBrand()).isEqualTo("Toyota");
+        assertThat(vehicle.getModel()).isEqualTo("Corolla");
         assertThat(vehicle.isActive()).isTrue();
     }
 
@@ -35,13 +35,13 @@ class VehicleTest {
     }
 
     @Test
-    void marcaNullThrows() {
+    void brandNullThrows() {
         assertThatThrownBy(() -> new Vehicle(UUID.randomUUID(), "AB123CD", null, "Corolla"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void modeloNullThrows() {
+    void modelNullThrows() {
         assertThatThrownBy(() -> new Vehicle(UUID.randomUUID(), "AB123CD", "Toyota", null))
                 .isInstanceOf(IllegalArgumentException.class);
     }
