@@ -1,6 +1,7 @@
 package com.parko.domain.lib.model;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.UUID;
 
@@ -11,10 +12,13 @@ public class User {
     private String studentId;
     private String fullName;
     private Email email;
-    private String passwordHash;
     private UserRole role;
+    @Setter
+    private String firebaseUid;
+    @Setter
+    private boolean active;
 
-    public User (UUID id, String studentId, String fullName, Email email, String passwordHash){
+    public User (UUID id, String studentId, String fullName, Email email){
 
         this.id = id;
 
@@ -40,9 +44,6 @@ public class User {
 
         this.email = email;
 
-        if (passwordHash == null){
-            throw new IllegalArgumentException("La contraseña no puede estar vacía");
-        }
-        this.passwordHash = passwordHash;
+        this.active = true;
     }
 }
