@@ -38,23 +38,33 @@ class ParkingSessionTest {
 
     @Test
     void visitorSessionHasNoVehicleOrPlate() {
-        ParkingSession session = ParkingSession.forVisitor(id, entryAt);
+        ParkingSession session = ParkingSession.forVisitor(id, entryAt, null);
 
         assertThat(session.getSessionType()).isEqualTo(SessionType.VISITOR);
         assertThat(session.getVehicleId()).isNull();
         assertThat(session.getPlateSnapshot()).isNull();
+        assertThat(session.getVisitorPlate()).isNull();
         assertThat(session.getStatus()).isEqualTo(SessionStatus.ACTIVE);
     }
 
     @Test
+    void visitorSessionCanRegisterVisitorPlate() {
+        ParkingSession session = ParkingSession.forVisitor(id, entryAt, "ZZ999ZZ");
+
+        assertThat(session.getVisitorPlate()).isEqualTo("ZZ999ZZ");
+        assertThat(session.getVehicleId()).isNull();
+        assertThat(session.getPlateSnapshot()).isNull();
+    }
+
+    @Test
     void entryAtNullThrows() {
-        assertThatThrownBy(() -> ParkingSession.forVisitor(id, null))
+        assertThatThrownBy(() -> ParkingSession.forVisitor(id, null, null))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void completeTransitionsToCompletedAndSetsExitAt() {
-        ParkingSession session = ParkingSession.forVisitor(id, entryAt);
+        ParkingSession session = ParkingSession.forVisitor(id, entryAt, null);
         LocalDateTime exitAt = entryAt.plusHours(1);
 
         session.complete(exitAt);
@@ -65,7 +75,7 @@ class ParkingSessionTest {
 
     @Test
     void completeWithoutExitAtThrows() {
-        ParkingSession session = ParkingSession.forVisitor(id, entryAt);
+        ParkingSession session = ParkingSession.forVisitor(id, entryAt, null);
 
         assertThatThrownBy(() -> session.complete(null))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -73,7 +83,7 @@ class ParkingSessionTest {
 
     @Test
     void completeWhenNotActiveThrows() {
-        ParkingSession session = ParkingSession.forVisitor(id, entryAt);
+        ParkingSession session = ParkingSession.forVisitor(id, entryAt, null);
         session.complete(entryAt.plusHours(1));
 
         assertThatThrownBy(() -> session.complete(entryAt.plusHours(2)))
@@ -82,7 +92,7 @@ class ParkingSessionTest {
 
     @Test
     void cancelTransitionsToCancelled() {
-        ParkingSession session = ParkingSession.forVisitor(id, entryAt);
+        ParkingSession session = ParkingSession.forVisitor(id, entryAt, null);
 
         session.cancel();
 
@@ -91,7 +101,7 @@ class ParkingSessionTest {
 
     @Test
     void cancelWhenNotActiveThrows() {
-        ParkingSession session = ParkingSession.forVisitor(id, entryAt);
+        ParkingSession session = ParkingSession.forVisitor(id, entryAt, null);
         session.cancel();
 
         assertThatThrownBy(session::cancel)
