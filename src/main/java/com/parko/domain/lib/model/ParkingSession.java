@@ -11,15 +11,18 @@ public class ParkingSession {
     private UUID id;
     private UUID vehicleId;
     private String plateSnapshot;
+    private String visitorPlate;
     private SessionType sessionType;
     private SessionStatus status;
     private LocalDateTime entryAt;
     private LocalDateTime exitAt;
 
-    private ParkingSession(UUID id, UUID vehicleId, String plateSnapshot, SessionType sessionType, LocalDateTime entryAt) {
+    private ParkingSession(UUID id, UUID vehicleId, String plateSnapshot, String visitorPlate,
+                            SessionType sessionType, LocalDateTime entryAt) {
         this.id = id;
         this.vehicleId = vehicleId;
         this.plateSnapshot = plateSnapshot;
+        this.visitorPlate = visitorPlate;
         this.sessionType = sessionType;
 
         if (entryAt == null) {
@@ -37,11 +40,11 @@ public class ParkingSession {
         if (plateSnapshot == null) {
             throw new IllegalArgumentException("Una sesión de usuario registrado requiere plateSnapshot");
         }
-        return new ParkingSession(id, vehicleId, plateSnapshot, SessionType.REGISTERED, entryAt);
+        return new ParkingSession(id, vehicleId, plateSnapshot, null, SessionType.REGISTERED, entryAt);
     }
 
-    public static ParkingSession forVisitor(UUID id, LocalDateTime entryAt) {
-        return new ParkingSession(id, null, null, SessionType.VISITOR, entryAt);
+    public static ParkingSession forVisitor(UUID id, LocalDateTime entryAt, String visitorPlate) {
+        return new ParkingSession(id, null, null, visitorPlate, SessionType.VISITOR, entryAt);
     }
 
     public void complete(LocalDateTime exitAt) {
